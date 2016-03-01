@@ -1,0 +1,428 @@
+
+lights.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00000248  000002dc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000248  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000002  00800100  00800100  000002dc  2**0
+                  ALLOC
+  3 .stab         00000f0c  00000000  00000000  000002dc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000cab  00000000  00000000  000011e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      00000011  00000000  00000000  00001e93  2**0
+                  CONTENTS, READONLY
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 46 00 	jmp	0x8c	; 0x8c <__ctors_end>
+   4:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+   8:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+   c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  10:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  14:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  18:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  1c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  20:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  24:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  28:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  2c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  30:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  34:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  38:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  3c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  40:	0c 94 86 00 	jmp	0x10c	; 0x10c <__vector_16>
+  44:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  48:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  4c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  50:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  54:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  58:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  5c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  60:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  64:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  68:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  6c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  70:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  74:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  78:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  7c:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  80:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  84:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+  88:	0c 94 58 00 	jmp	0xb0	; 0xb0 <__bad_interrupt>
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e1       	ldi	r29, 0x10	; 16
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_clear_bss>:
+  98:	11 e0       	ldi	r17, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	01 c0       	rjmp	.+2      	; 0xa2 <.do_clear_bss_start>
+
+000000a0 <.do_clear_bss_loop>:
+  a0:	1d 92       	st	X+, r1
+
+000000a2 <.do_clear_bss_start>:
+  a2:	a2 30       	cpi	r26, 0x02	; 2
+  a4:	b1 07       	cpc	r27, r17
+  a6:	e1 f7       	brne	.-8      	; 0xa0 <.do_clear_bss_loop>
+  a8:	0e 94 0f 01 	call	0x21e	; 0x21e <main>
+  ac:	0c 94 22 01 	jmp	0x244	; 0x244 <_exit>
+
+000000b0 <__bad_interrupt>:
+  b0:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000b4 <debounce_button>:
+// function can be implemented at the same time.  Expects active low pushbutton on 
+// Port D bit zero.  Debounce time is determined by external loop delay times 12. 
+//*******************************************************************************
+int8_t debounce_button(uint8_t button) {
+  static uint16_t state = 0; //holds present state
+  state = (state << 1) | (! bit_is_clear(PIND, button)) | 0xE000;
+  b4:	40 b3       	in	r20, 0x10	; 16
+  b6:	20 91 00 01 	lds	r18, 0x0100
+  ba:	30 91 01 01 	lds	r19, 0x0101
+  be:	22 0f       	add	r18, r18
+  c0:	33 1f       	adc	r19, r19
+  c2:	30 6e       	ori	r19, 0xE0	; 224
+  c4:	50 e0       	ldi	r21, 0x00	; 0
+  c6:	02 c0       	rjmp	.+4      	; 0xcc <debounce_button+0x18>
+  c8:	55 95       	asr	r21
+  ca:	47 95       	ror	r20
+  cc:	8a 95       	dec	r24
+  ce:	e2 f7       	brpl	.-8      	; 0xc8 <debounce_button+0x14>
+  d0:	41 70       	andi	r20, 0x01	; 1
+  d2:	55 27       	eor	r21, r21
+  d4:	24 2b       	or	r18, r20
+  d6:	35 2b       	or	r19, r21
+  d8:	30 93 01 01 	sts	0x0101, r19
+  dc:	20 93 00 01 	sts	0x0100, r18
+  if (state == 0xF000) return 1;
+  e0:	81 e0       	ldi	r24, 0x01	; 1
+  e2:	21 15       	cp	r18, r1
+  e4:	30 4f       	sbci	r19, 0xF0	; 240
+  e6:	09 f0       	breq	.+2      	; 0xea <debounce_button+0x36>
+  e8:	80 e0       	ldi	r24, 0x00	; 0
+  return 0;
+}
+  ea:	08 95       	ret
+
+000000ec <spi_init>:
+
+void spi_init(void){
+//Set SS (PB0), MOSI, and SCLK as outputs */
+	DDRB |= (1 << PB0) | (1 << PB1) | (1 << PB2);
+  ec:	87 b3       	in	r24, 0x17	; 23
+  ee:	87 60       	ori	r24, 0x07	; 7
+  f0:	87 bb       	out	0x17, r24	; 23
+
+	/* Set MISO (PB3) as an input */
+	DDRB &= ~(1 << PB3);
+  f2:	bb 98       	cbi	0x17, 3	; 23
+
+	SPCR |= (1 << SPE) | (1 <<MSTR); //enable SPI and set master
+  f4:	8d b1       	in	r24, 0x0d	; 13
+  f6:	80 65       	ori	r24, 0x50	; 80
+  f8:	8d b9       	out	0x0d, r24	; 13
+	SPSR |= (1 << SPI2X); //run i/o clock divided by 2	
+  fa:	70 9a       	sbi	0x0e, 0	; 14
+  fc:	08 95       	ret
+
+000000fe <tcnt0_init>:
+}
+
+void tcnt0_init(void) {
+	/* Enable Timer 0 with a 128 prescaler */
+	/* TIMSK = Timer Mask; 1 means enable the timer interrupt */
+	TIMSK |= (1 << TOIE0);
+  fe:	87 b7       	in	r24, 0x37	; 55
+ 100:	81 60       	ori	r24, 0x01	; 1
+ 102:	87 bf       	out	0x37, r24	; 55
+	/* TCCR0 = Timer 0 Control Register; 1 means enable that prescaler bit */
+	TCCR0 |= (1 << CS02) | (1 << CS00);
+ 104:	83 b7       	in	r24, 0x33	; 51
+ 106:	85 60       	ori	r24, 0x05	; 5
+ 108:	83 bf       	out	0x33, r24	; 51
+ 10a:	08 95       	ret
+
+0000010c <__vector_16>:
+//	TCCR0 |= (1 << CS01); //prescaler 8 = 1.907 Hz
+}
+
+ISR(TIMER0_OVF_vect){
+ 10c:	1f 92       	push	r1
+ 10e:	0f 92       	push	r0
+ 110:	0f b6       	in	r0, 0x3f	; 63
+ 112:	0f 92       	push	r0
+ 114:	11 24       	eor	r1, r1
+ 116:	0b b6       	in	r0, 0x3b	; 59
+ 118:	0f 92       	push	r0
+ 11a:	2f 93       	push	r18
+ 11c:	3f 93       	push	r19
+ 11e:	4f 93       	push	r20
+ 120:	5f 93       	push	r21
+ 122:	6f 93       	push	r22
+ 124:	7f 93       	push	r23
+ 126:	8f 93       	push	r24
+ 128:	9f 93       	push	r25
+ 12a:	af 93       	push	r26
+ 12c:	bf 93       	push	r27
+ 12e:	cf 93       	push	r28
+ 130:	df 93       	push	r29
+ 132:	ef 93       	push	r30
+ 134:	ff 93       	push	r31
+	//polling style check for button presses
+	//loop really quickly through each shift register
+
+	uint8_t clock=PORTC;
+ 136:	85 b3       	in	r24, 0x15	; 21
+	uint8_t load=PORTA;
+ 138:	ab b3       	in	r26, 0x1b	; 27
+	uint8_t led = PORTB;
+ 13a:	b8 b3       	in	r27, 0x18	; 24
+	int i, j=0;	
+	clock = clock & 0x0F;
+ 13c:	8f 70       	andi	r24, 0x0F	; 15
+	while(!clock){
+ 13e:	09 f4       	brne	.+2      	; 0x142 <__vector_16+0x36>
+ 140:	ff cf       	rjmp	.-2      	; 0x140 <__vector_16+0x34>
+		j++;
+		clock = clock >> 1;			
+	}
+	clock = PINC; //restore clock
+ 142:	f3 b3       	in	r31, 0x13	; 19
+	//Latch all switch values to respective memory of shift registers by toggling sh/ld pin
+	PORTA =0x00 ; 
+ 144:	1b ba       	out	0x1b, r1	; 27
+ 146:	84 e6       	ldi	r24, 0x64	; 100
+ 148:	90 e0       	ldi	r25, 0x00	; 0
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 14a:	cf e3       	ldi	r28, 0x3F	; 63
+ 14c:	df e1       	ldi	r29, 0x1F	; 31
+ 14e:	21 97       	sbiw	r28, 0x01	; 1
+ 150:	f1 f7       	brne	.-4      	; 0x14e <__vector_16+0x42>
+ 152:	00 c0       	rjmp	.+0      	; 0x154 <__vector_16+0x48>
+ 154:	00 00       	nop
+ 156:	01 97       	sbiw	r24, 0x01	; 1
+	for (i=0; i<100; i++){
+ 158:	00 97       	sbiw	r24, 0x00	; 0
+ 15a:	b9 f7       	brne	.-18     	; 0x14a <__vector_16+0x3e>
+		_delay_ms(2);
+	}
+	PORTA = ~(PORTA); 
+ 15c:	8b b3       	in	r24, 0x1b	; 27
+ 15e:	80 95       	com	r24
+ 160:	8b bb       	out	0x1b, r24	; 27
+ 162:	2f e0       	ldi	r18, 0x0F	; 15
+ 164:	30 e0       	ldi	r19, 0x00	; 0
+ 166:	05 c0       	rjmp	.+10     	; 0x172 <__vector_16+0x66>
+ 168:	21 50       	subi	r18, 0x01	; 1
+ 16a:	31 09       	sbc	r19, r1
+	//have to latch clock 8 times to serial shift out bits
+	for(i=0; i<15; i++){   
+ 16c:	21 15       	cp	r18, r1
+ 16e:	31 05       	cpc	r19, r1
+ 170:	39 f1       	breq	.+78     	; 0x1c0 <__vector_16+0xb4>
+		PORTC = (PINC ^ clock); //toggle clock on and off  
+ 172:	83 b3       	in	r24, 0x13	; 19
+ 174:	8f 27       	eor	r24, r31
+ 176:	85 bb       	out	0x15, r24	; 21
+// function can be implemented at the same time.  Expects active low pushbutton on 
+// Port D bit zero.  Debounce time is determined by external loop delay times 12. 
+//*******************************************************************************
+int8_t debounce_button(uint8_t button) {
+  static uint16_t state = 0; //holds present state
+  state = (state << 1) | (! bit_is_clear(PIND, button)) | 0xE000;
+ 178:	e0 b3       	in	r30, 0x10	; 16
+ 17a:	80 91 00 01 	lds	r24, 0x0100
+ 17e:	90 91 01 01 	lds	r25, 0x0101
+ 182:	88 0f       	add	r24, r24
+ 184:	99 1f       	adc	r25, r25
+ 186:	90 6e       	ori	r25, 0xE0	; 224
+ 188:	4e 2f       	mov	r20, r30
+ 18a:	41 70       	andi	r20, 0x01	; 1
+ 18c:	50 e0       	ldi	r21, 0x00	; 0
+ 18e:	84 2b       	or	r24, r20
+ 190:	95 2b       	or	r25, r21
+ 192:	90 93 01 01 	sts	0x0101, r25
+ 196:	80 93 00 01 	sts	0x0100, r24
+  if (state == 0xF000) return 1;
+ 19a:	81 15       	cp	r24, r1
+ 19c:	90 4f       	sbci	r25, 0xF0	; 240
+ 19e:	21 f7       	brne	.-56     	; 0x168 <__vector_16+0x5c>
+	PORTA = ~(PORTA); 
+	//have to latch clock 8 times to serial shift out bits
+	for(i=0; i<15; i++){   
+		PORTC = (PINC ^ clock); //toggle clock on and off  
+		if (debounce_button(j)){ //should read on falling edge of sh/ld
+			PORTB ^= (debounce_button(j)) << (i/2); 
+ 1a0:	88 b3       	in	r24, 0x18	; 24
+// function can be implemented at the same time.  Expects active low pushbutton on 
+// Port D bit zero.  Debounce time is determined by external loop delay times 12. 
+//*******************************************************************************
+int8_t debounce_button(uint8_t button) {
+  static uint16_t state = 0; //holds present state
+  state = (state << 1) | (! bit_is_clear(PIND, button)) | 0xE000;
+ 1a2:	90 b3       	in	r25, 0x10	; 16
+ 1a4:	69 2f       	mov	r22, r25
+ 1a6:	61 70       	andi	r22, 0x01	; 1
+ 1a8:	70 e0       	ldi	r23, 0x00	; 0
+ 1aa:	70 6e       	ori	r23, 0xE0	; 224
+ 1ac:	70 93 01 01 	sts	0x0101, r23
+ 1b0:	60 93 00 01 	sts	0x0100, r22
+	PORTA = ~(PORTA); 
+	//have to latch clock 8 times to serial shift out bits
+	for(i=0; i<15; i++){   
+		PORTC = (PINC ^ clock); //toggle clock on and off  
+		if (debounce_button(j)){ //should read on falling edge of sh/ld
+			PORTB ^= (debounce_button(j)) << (i/2); 
+ 1b4:	88 bb       	out	0x18, r24	; 24
+ 1b6:	21 50       	subi	r18, 0x01	; 1
+ 1b8:	31 09       	sbc	r19, r1
+	for (i=0; i<100; i++){
+		_delay_ms(2);
+	}
+	PORTA = ~(PORTA); 
+	//have to latch clock 8 times to serial shift out bits
+	for(i=0; i<15; i++){   
+ 1ba:	21 15       	cp	r18, r1
+ 1bc:	31 05       	cpc	r19, r1
+ 1be:	c9 f6       	brne	.-78     	; 0x172 <__vector_16+0x66>
+		}
+//		PORTB ^= (1 << (i/2)); 
+	}
+
+//indicator to confirm how many roll overs - test
+	PORTB = PORTB>>4;
+ 1c0:	88 b3       	in	r24, 0x18	; 24
+ 1c2:	82 95       	swap	r24
+ 1c4:	8f 70       	andi	r24, 0x0F	; 15
+ 1c6:	88 bb       	out	0x18, r24	; 24
+	PORTB++;
+ 1c8:	88 b3       	in	r24, 0x18	; 24
+ 1ca:	8f 5f       	subi	r24, 0xFF	; 255
+ 1cc:	88 bb       	out	0x18, r24	; 24
+	PORTB = (PORTB << 4) | (led & 0x0F);
+ 1ce:	88 b3       	in	r24, 0x18	; 24
+ 1d0:	e0 e1       	ldi	r30, 0x10	; 16
+ 1d2:	8e 9f       	mul	r24, r30
+ 1d4:	c0 01       	movw	r24, r0
+ 1d6:	11 24       	eor	r1, r1
+ 1d8:	9b 2f       	mov	r25, r27
+ 1da:	9f 70       	andi	r25, 0x0F	; 15
+ 1dc:	98 2b       	or	r25, r24
+ 1de:	98 bb       	out	0x18, r25	; 24
+
+	PORTC = clock; //restore original
+ 1e0:	f5 bb       	out	0x15, r31	; 21
+	PORTA = load;
+ 1e2:	ab bb       	out	0x1b, r26	; 27
+	if (!(PINC & 0x04))
+ 1e4:	9a 9b       	sbis	0x13, 2	; 19
+ 1e6:	18 c0       	rjmp	.+48     	; 0x218 <__vector_16+0x10c>
+		PORTC = 0x01; //loop back	
+	else
+		PORTC = PORTC << 1; //shift clock to next output 
+ 1e8:	85 b3       	in	r24, 0x15	; 21
+ 1ea:	88 0f       	add	r24, r24
+ 1ec:	85 bb       	out	0x15, r24	; 21
+}
+ 1ee:	ff 91       	pop	r31
+ 1f0:	ef 91       	pop	r30
+ 1f2:	df 91       	pop	r29
+ 1f4:	cf 91       	pop	r28
+ 1f6:	bf 91       	pop	r27
+ 1f8:	af 91       	pop	r26
+ 1fa:	9f 91       	pop	r25
+ 1fc:	8f 91       	pop	r24
+ 1fe:	7f 91       	pop	r23
+ 200:	6f 91       	pop	r22
+ 202:	5f 91       	pop	r21
+ 204:	4f 91       	pop	r20
+ 206:	3f 91       	pop	r19
+ 208:	2f 91       	pop	r18
+ 20a:	0f 90       	pop	r0
+ 20c:	0b be       	out	0x3b, r0	; 59
+ 20e:	0f 90       	pop	r0
+ 210:	0f be       	out	0x3f, r0	; 63
+ 212:	0f 90       	pop	r0
+ 214:	1f 90       	pop	r1
+ 216:	18 95       	reti
+	PORTB = (PORTB << 4) | (led & 0x0F);
+
+	PORTC = clock; //restore original
+	PORTA = load;
+	if (!(PINC & 0x04))
+		PORTC = 0x01; //loop back	
+ 218:	81 e0       	ldi	r24, 0x01	; 1
+ 21a:	85 bb       	out	0x15, r24	; 21
+ 21c:	e8 cf       	rjmp	.-48     	; 0x1ee <__vector_16+0xe2>
+
+0000021e <main>:
+}
+
+void tcnt0_init(void) {
+	/* Enable Timer 0 with a 128 prescaler */
+	/* TIMSK = Timer Mask; 1 means enable the timer interrupt */
+	TIMSK |= (1 << TOIE0);
+ 21e:	87 b7       	in	r24, 0x37	; 55
+ 220:	81 60       	ori	r24, 0x01	; 1
+ 222:	87 bf       	out	0x37, r24	; 55
+	/* TCCR0 = Timer 0 Control Register; 1 means enable that prescaler bit */
+	TCCR0 |= (1 << CS02) | (1 << CS00);
+ 224:	83 b7       	in	r24, 0x33	; 51
+ 226:	85 60       	ori	r24, 0x05	; 5
+ 228:	83 bf       	out	0x33, r24	; 51
+{
+tcnt0_init();
+//spi_init();
+
+//setup data direction , 1 for output - 0 for input
+DDRC = 0xFF;  //Control the clock
+ 22a:	8f ef       	ldi	r24, 0xFF	; 255
+ 22c:	84 bb       	out	0x14, r24	; 20
+DDRA = 0xFF;  //Control the Shift/Load
+ 22e:	8a bb       	out	0x1a, r24	; 26
+//DDRF = 0xFF; //Control clock inhibit pin
+DDRE = 0x00; //Accept Inputs
+ 230:	12 b8       	out	0x02, r1	; 2
+//setup LEDs as outputs
+DDRB = 0xFF;
+ 232:	87 bb       	out	0x17, r24	; 23
+
+PORTC = 0x01; //assert logic 1 to activate first
+ 234:	81 e0       	ldi	r24, 0x01	; 1
+ 236:	85 bb       	out	0x15, r24	; 21
+PORTB = 0x00;
+ 238:	18 ba       	out	0x18, r1	; 24
+PORTA = 0x0F; //keep sh/ld pin high, latch low to push current state of switches to register
+ 23a:	8f e0       	ldi	r24, 0x0F	; 15
+ 23c:	8b bb       	out	0x1b, r24	; 27
+//PORTF = 0x00; //
+PORTE = 0x00; //no pullup resistor, so returns real state of pin
+ 23e:	13 b8       	out	0x03, r1	; 3
+
+sei(); //set global interrupts
+ 240:	78 94       	sei
+ 242:	ff cf       	rjmp	.-2      	; 0x242 <main+0x24>
+
+00000244 <_exit>:
+ 244:	f8 94       	cli
+
+00000246 <__stop_program>:
+ 246:	ff cf       	rjmp	.-2      	; 0x246 <__stop_program>
